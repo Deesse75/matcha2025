@@ -2,7 +2,6 @@ import {
   Context,
   createContext,
   Dispatch,
-  ReactNode,
   SetStateAction,
   useContext,
   useState,
@@ -17,6 +16,9 @@ type UserContextType = {
   userSocket: Socket | null;
   setUserSocket: Dispatch<SetStateAction<Socket | null>>;
 
+  notification: string | null;
+  setNotification: Dispatch<SetStateAction<string | null>>;
+
   deleteUserData: () => void;
 };
 
@@ -27,12 +29,16 @@ export const UserContext = createContext<UserContextType>({
   userSocket: null,
   setUserSocket: () => {},
 
+  notification: null,
+  setNotification: () => {},
+
   deleteUserData: () => {},
 }) as Context<UserContextType>;
 
-const UserProvider = ({ children }: { children: ReactNode }) => {
+const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userData, setUserData] = useState<UserDataType | null>(null);
   const [userSocket, setUserSocket] = useState<Socket | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
 
   const deleteUserData = () => {
     if (userSocket) userSocket.disconnect();
@@ -47,6 +53,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         setUserData,
         userSocket,
         setUserSocket,
+        notification,
+        setNotification,
         deleteUserData,
       }}
     >
