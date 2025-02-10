@@ -20,14 +20,6 @@ const InputLogin: FC<Props> = ({ setLogin, setValidateLogin }) => {
   const [rule1, setRule1] = useState<boolean>(false);
   const [rule2, setRule2] = useState<boolean>(false);
 
-  const handleFocus = () => {
-    setOpenRules(true);
-  };
-
-  const handleBlur = () => {
-    setOpenRules(false);
-  };
-
   const handleChange = () => {
     if (!refLogin.current || !refLogin.current.value) {
       setRule1(false);
@@ -57,8 +49,8 @@ const InputLogin: FC<Props> = ({ setLogin, setValidateLogin }) => {
             name='login'
             id='login'
             ref={refLogin}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            onFocus={() => setOpenRules(true)}
+            onBlur={() => setOpenRules(false)}
             onChange={handleChange}
             autoComplete='username'
             minLength={5}

@@ -4,7 +4,7 @@ import { appRedirect } from '../../../../appUtils/variables/routeDef';
 
 type Props = {};
 
-const ErrorNotFound: FC<Props> = ({}) => {
+const ErrorNotFoundOff: FC<Props> = ({}) => {
   const nav = useNavigate();
   const [countRedir, setCountRedir] = useState<number>(10);
 
@@ -47,4 +47,4 @@ const ErrorNotFound: FC<Props> = ({}) => {
   );
 };
 
-export default ErrorNotFound;
+export default ErrorNotFoundOff;

@@ -1,26 +1,19 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import InputLogin from './utils/InputLogin';
-import InputEmail from './utils/InputEmail';
-import { useNotification } from '../../../appUtils/context/notif.context';
-import { appRedirect, mailRoute } from '../../../appUtils/variables/routeDef';
-import DisconnectedRedirection from './utils/DisconnectedRedirection';
-import { useNavigate } from 'react-router-dom';
+import { FC, useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "../../../appUtils/context/notif.context";
+import { mailRoute, appRedirect } from "../../../appUtils/variables/routeDef";
 
 type Props = {};
 
-const ContactUsOff: FC<Props> = ({}) => {
+const ContactUsOn: FC<Props> = ({}) => {
   const notif = useNotification();
   const nav = useNavigate();
   const refSubject = useRef<HTMLInputElement>(null);
   const refTextEmail = useRef<HTMLTextAreaElement>(null);
   const [confirmedMessage, setConfirmedMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [login, setLogin] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
   const [textEmail, setTextEmail] = useState<string>('');
-  const [validateLogin, setValidateLogin] = useState<boolean>(false);
-  const [validateEmail, setValidateEmail] = useState<boolean>(false);
   const [sendEmail, setSendEmail] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -43,7 +36,7 @@ const ContactUsOff: FC<Props> = ({}) => {
       refTextEmail.current.value.length > 900
     ) {
       setErrorMessage(
-        "Le texte de votre message doit contenir entre 1 et 900 caractères.",
+        'Le texte de votre message doit contenir entre 1 et 900 caractères.',
       );
       setTextEmail('');
       return;
@@ -60,14 +53,16 @@ const ContactUsOff: FC<Props> = ({}) => {
   useEffect(() => {
     if (!sendEmail) return;
 
+    const id: string = localStorage.getItem('id') || '0';
+
     const callBackEnd = async () => {
       try {
-        const response = await fetch(mailRoute.contactOff, {
+        const response = await fetch(mailRoute.contactOn, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ login, email, subject, textEmail }),
+          body: JSON.stringify({ id, subject, textEmail }),
         });
 
         if (!response.ok) {
@@ -80,8 +75,6 @@ const ContactUsOff: FC<Props> = ({}) => {
         const data = await response.json();
         if (data?.status !== 'ok') {
           setErrorMessage(data.message || response.statusText);
-          setValidateLogin(false);
-          setValidateEmail(false);
           return;
         }
 
@@ -92,8 +85,7 @@ const ContactUsOff: FC<Props> = ({}) => {
       }
     };
     callBackEnd();
-
-  }, [sendEmail])
+  }, [sendEmail]);
 
   return (
     <>
@@ -109,16 +101,6 @@ const ContactUsOff: FC<Props> = ({}) => {
             </>
           ) : (
             <>
-              <div className='contact_info'>
-                <InputLogin
-                  setLogin={setLogin}
-                  setValidateLogin={setValidateLogin}
-                />
-                <InputEmail
-                  setEmail={setEmail}
-                  setValidateEmail={setValidateEmail}
-                />
-              </div>
               <div className='contact_subject'>
                 <input
                   type='text'
@@ -147,7 +129,6 @@ const ContactUsOff: FC<Props> = ({}) => {
               <div className='contact_button_container'>
                 <button
                   className='contact_button'
-                  disabled={!validateEmail || !validateLogin}
                   onClick={handleClick}
                 >
                   Envoyer
@@ -158,7 +139,6 @@ const ContactUsOff: FC<Props> = ({}) => {
               </div>
             </>
           )}
-          <DisconnectedRedirection activePage='contact' />
         </div>
         <div className='contact_img'></div>
       </div>
@@ -166,4 +146,4 @@ const ContactUsOff: FC<Props> = ({}) => {
   );
 };
 
-export default ContactUsOff;
+export default ContactUsOn;

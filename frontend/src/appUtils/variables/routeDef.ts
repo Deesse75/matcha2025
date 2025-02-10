@@ -15,6 +15,8 @@ export const appRedirect = {
   errorInterne: '/erreur_interne',
   errorLoading: '/serveur_indisponible',
   errorNotFound: '/page_introuvable',
+  getMe: '/chargement',
+  home: '/tableau_de_bord',
 };
 
 export const disconnectedRoute = {
@@ -35,5 +37,16 @@ export const authRoute = {
 };
 
 export const mailRoute = {
-  contact: `${PATH}/mailer/contact`,
+  contactOff: `${PATH}/mailer/contact_off`,
+  contactOn: `${PATH}/mailer/contact_on`,
+};
+
+export const searchRoute = {
+  searchLogin: `${PATH}/search/login`,
+  searchLocation: `${PATH}/search/location`,
+};
+
+export const listRoute = {
+  tagsList: `${PATH}/list/tags_list`,
+
 };

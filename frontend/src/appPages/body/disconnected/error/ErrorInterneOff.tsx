@@ -5,7 +5,7 @@ import ServerNotif from '../../../notifications/ServerNotif';
 
 type Props = {};
 
-const ErrorInterne: FC<Props> = ({}) => {
+const ErrorInterneOff: FC<Props> = ({}) => {
   const nav = useNavigate();
   const [countRedir, setCountRedir] = useState<number>(10);
 
@@ -52,4 +52,4 @@ const ErrorInterne: FC<Props> = ({}) => {
   );
 };
 
-export default ErrorInterne;
+export default ErrorInterneOff;
