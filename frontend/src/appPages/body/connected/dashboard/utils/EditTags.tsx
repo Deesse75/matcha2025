@@ -1,26 +1,39 @@
 import { Dispatch, FC, SetStateAction } from 'react';
+import EditOneTag from './EditOneTag';
+import { Tags } from '../../../../../appInterfaces/search.interfaces';
 
 type Props = {
-  serieTags: number;
-  setSerieTags: Dispatch<SetStateAction<number>>;
-  tagsList: string[] | null;
+  serieOfTags: number;
+  setSerieOfTags: Dispatch<SetStateAction<number>>;
+  existingTagsList: Tags[] | null;
+  selectedTags: string[] | null;
+  setSelectedTags: Dispatch<SetStateAction<string[] | null>>;
 };
 
-const EditTags: FC<Props> = ({ serieTags, setSerieTags, tagsList }) => {
-
+const EditTags: FC<Props> = ({
+  serieOfTags,
+  setSerieOfTags,
+  existingTagsList,
+  selectedTags,
+  setSelectedTags,
+}) => {
   return (
     <>
       <div className='search_edit_tags_container'>
         <div className='search_edit_tags_display'>
-          {tagsList ? (<>
-          
-          </>) : (<>
-          
-          </>)}
+          {existingTagsList &&
+            existingTagsList.map((tag, key) => (
+              <EditOneTag
+                key={key as number}
+                tag={tag}
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+              />
+            ))}
         </div>
         <div className='search_edit_tags_button'>
-          <button onClick={() => setSerieTags(serieTags + 1)}>
-            Afficher plus de centre d'intêret
+          <button onClick={() => setSerieOfTags(serieOfTags + 1)}>
+            Voir d'autres centres d'intêret
           </button>
         </div>
       </div>

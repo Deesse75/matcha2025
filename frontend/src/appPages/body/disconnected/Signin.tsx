@@ -14,7 +14,9 @@ const Signin: FC<Props> = ({}) => {
           <SigninModule />
           <DisconnectedRedirection activePage='signin' />
         </div>
-        <div className='disconnected_body_img'><DisconnectedBodyImg nameImg='signin'/></div>
+        <div className='disconnected_body_img'>
+          {/* <DisconnectedBodyImg nameImg='signin'/> */}
+          </div>
       </div>
     </>
   );

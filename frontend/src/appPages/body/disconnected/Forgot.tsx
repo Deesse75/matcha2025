@@ -14,7 +14,7 @@ const Forgot: FC<Props> = ({}) => {
           <DisconnectedRedirection activePage='forgot' />
         </div>
         <div className='disconnected_body_img'>
-          <DisconnectedBodyImg nameImg='forgot' />
+          {/* <DisconnectedBodyImg nameImg='forgot' /> */}
         </div>
       </div>
     </>

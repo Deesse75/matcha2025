@@ -43,10 +43,10 @@ export const mailRoute = {
 
 export const searchRoute = {
   searchLogin: `${PATH}/search/login`,
-  searchLocation: `${PATH}/search/location`,
+  searchData: `${PATH}/search/data`,
 };
 
 export const listRoute = {
-  tagsList: `${PATH}/list/tags_list`,
+  getExistingTagsList: `${PATH}/list/get_existing_tags_list`,
 
 };

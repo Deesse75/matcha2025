@@ -1,4 +1,11 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { GiCheckMark } from 'react-icons/gi';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
@@ -23,12 +30,14 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
   const refLogin = useRef<HTMLInputElement>(null);
   const [login, setLogin] = useState<string | null>(null);
   const [validateLogin, setValidateLogin] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [searchLogin, setSearchLogin] = useState<boolean>(false);
+  const [errorLogin, setErrorLogin] = useState<string | null>(null);
 
   const handleChange = () => {
     if (!refLogin.current || !refLogin.current.value) {
       setRule1(false);
       setRule2(false);
+      setLogin(null);
       return;
     }
     refLogin.current.value[0].match(/[a-zA-Z]/)
@@ -37,19 +46,21 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
     refLogin.current.value.length >= 3 && refLogin.current.value.length <= 20
       ? setRule2(true)
       : setRule2(false);
+    rule1 && rule2 ? setLogin(refLogin.current.value) : setLogin(null);
   };
 
-  const handleClick = () => {
-    const login: string | null = refLogin?.current?.value || null;
-    if (login) {
-      setLogin(login);
-      setErrorMessage(null);
-    } else {
-      setErrorMessage('Une erreur est survenue, veuillez recommencer.');
+  const handleSubmit = () => {
+    if (!login || !validateLogin) {
+      setLogin(null);
+      setRule1(false);
+      setRule2(false);
       setValidateLogin(false);
-      if (refLogin?.current && refLogin.current.value)
-        refLogin.current.value = '';
+      refLogin.current ? (refLogin.current.value = '') : null;
+      setErrorLogin("Une erreur s'est produite, veuillez réessayer");
+      return;
     }
+    setErrorLogin(null);
+    setSearchLogin(true);
   };
 
   useEffect(() => {
@@ -58,7 +69,7 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
   }, [rule1, rule2]);
 
   useEffect(() => {
-    if (!login) return;
+    if (!searchLogin) return;
 
     const callBackEnd = async () => {
       try {
@@ -79,32 +90,30 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
 
         const data = await response.json();
         if (data.status !== 'ok') {
-          setErrorMessage(data.message || response.statusText);
+          setErrorLogin(data.message || response.statusText);
           setValidateLogin(false);
           setLogin(null);
           return;
         }
 
         //context listing***********************************************************
-        setSelectedMenu('display');
-      } catch (error) {
-
-      }
+        setSelectedMenu('listing');
+      } catch (error) {}
     };
     callBackEnd();
-  }, [login]);
+  }, [searchLogin]);
 
   return (
     <>
       <div className='search_login_container'>
-        <div className='search_login_title'>
+        <div
+          className='search_login_title'
+          onClick={() => setOpenInput(!openInput)}
+        >
           <div className='search_login_title_text'>
             Rechercher un utilisateur via son pseudo
           </div>
-          <div
-            className='search_login_title_icon'
-            onClick={() => setOpenInput(!openInput)}
-          >
+          <div className='search_login_title_icon'>
             {openInput ? (
               <MdArrowDropDown size={20} />
             ) : (
@@ -112,32 +121,22 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
             )}
           </div>
         </div>
-        <div className='search_login_section'>
-          <input
-            type='text'
-            name='searchLogin'
-            id='searchLogin'
-            className='search_login_section_input'
-            ref={refLogin}
-            onFocus={() => setOpenRules(true)}
-            onBlur={() => setOpenRules(false)}
-            onChange={handleChange}
-            autoComplete='username'
-            minLength={3}
-            maxLength={20}
-          />
-          {errorMessage && (
-            <>
-              <div className='search_login_section_error'>{errorMessage}</div>
-            </>
-          )}
-          <button
-            className='search_login_section_button'
-            disabled={!validateLogin}
-            onClick={handleClick}
-          >
-            Rechercher
-          </button>
+        <form onSubmit={handleSubmit}>
+          <div className='search_login_section'>
+            <input
+              className='search_login_section_input'
+              type='text'
+              name='searchLogin'
+              id='searchLogin'
+              ref={refLogin}
+              onFocus={() => setOpenRules(true)}
+              onBlur={() => setOpenRules(false)}
+              onChange={handleChange}
+              autoComplete='username'
+              minLength={3}
+              maxLength={20}
+            />
+          </div>
           {openRules && (
             <>
               <div className='search_login_rules_container'>
@@ -168,7 +167,22 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
               </div>
             </>
           )}
-        </div>
+          <div className='search_login_submit'>
+            {errorLogin && (
+              <>
+                <div className='search_login_submit_error'>{errorLogin}</div>
+              </>
+            )}
+            <input
+              className='search_login_submit_button'
+              type='submit'
+              name='loginSubmit'
+              id='loginSubmit'
+              value='Rechercher'
+              disabled={!validateLogin}
+            />
+          </div>
+        </form>
       </div>
     </>
   );

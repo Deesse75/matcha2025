@@ -42,11 +42,11 @@ const Home: FC<Props> = ({}) => {
               selectedMenu={selectedMenu}
               setSelectedMenu={setSelectedMenu}
             />
-            <DashboardHistory />
+            {/* <DashboardHistory /> */}
           </div>
         </div>
         <div className='home_notif'>
-          <SocketManager />
+          {/* <SocketManager /> */}
         </div>
       </div>
     </>

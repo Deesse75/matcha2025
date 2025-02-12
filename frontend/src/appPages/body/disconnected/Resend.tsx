@@ -14,7 +14,7 @@ const Resend: FC<Props> = ({}) => {
           <DisconnectedRedirection activePage='resend' />
         </div>
         <div className='disconnected_body_img'>
-          <DisconnectedBodyImg nameImg='resend' />
+          {/* <DisconnectedBodyImg nameImg='resend' /> */}
         </div>
       </div>
     </>
