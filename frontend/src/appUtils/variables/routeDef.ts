@@ -4,7 +4,7 @@ const HOST = import.meta.env.VITE_HOST_BACK;
 const PATH = `http://${HOST}:${PORT}`;
 
 export const appRedirect = {
-  loadingMatcha: '/',
+  loading: '/',
   signin: '/connexion',
   signup: '/inscription',
   forgot: '/mot_de_passe_oublie',
@@ -12,11 +12,9 @@ export const appRedirect = {
   resend: '/renvoi_lien_validation',
   validateEmail: '/validation_email',
   contactus: '/contactez_nous',
-  errorInterne: '/erreur_interne',
-  errorLoading: '/serveur_indisponible',
-  errorNotFound: '/page_introuvable',
   getMe: '/chargement',
   home: '/tableau_de_bord',
+  errorInternal: '/erreur_interne',
 };
 
 export const disconnectedRoute = {
@@ -29,11 +27,13 @@ export const disconnectedRoute = {
 };
 
 export const authRoute = {
-  LoadingMatcha: `${PATH}/auth/loading_matcha`,
+  loading: `${PATH}/auth/loading`,
   signin: `${PATH}/auth/signin`,
   signup: `${PATH}/auth/signup`,
   forgot: `${PATH}/auth/forgot`,
   resend: `${PATH}/auth/resend`,
+  reinit: `${PATH}/auth/reinit`,
+  validate: `${PATH}/auth/validate`,
 };
 
 export const mailRoute = {
