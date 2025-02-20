@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import EditOneTag from './EditOneTag';
-import { Tags } from '../../../../appInterfaces/search.interfaces';
+import { Tags } from '../../../appInterfaces/search.interfaces';
 
 type Props = {
   serieOfTags: number;

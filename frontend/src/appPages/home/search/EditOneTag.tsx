@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, FC } from "react";
-import { Tags } from "../../../../appInterfaces/search.interfaces";
+import { Dispatch, SetStateAction, FC } from 'react';
+import { Tags } from '../../../appInterfaces/search.interfaces';
 
 type Props = {
   key: number;

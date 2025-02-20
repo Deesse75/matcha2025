@@ -1,5 +1,5 @@
 import { FC, useRef, useState, useEffect } from "react";
-import { mailRoute } from "../../../appUtils/variables/routeDef";
+import { mailRoute } from "../../appUtils/variables/routeDef";
 
 type Props = {};
 

@@ -1,12 +1,12 @@
-import { FC } from 'react';
-import { appRedirect } from '../../appUtils/variables/routeDef';
-import { useNavigate } from 'react-router-dom';
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { appRedirect } from "../../appUtils/variables/routeDef";
 
 type Props = {
   activePage: string;
 };
 
-const RedirectPagesOff: FC<Props> = ({ activePage }) => {
+const RedirectAuthPage: FC<Props> = ({ activePage }) => {
   const nav = useNavigate();
 
   return (
@@ -82,4 +82,4 @@ const RedirectPagesOff: FC<Props> = ({ activePage }) => {
   );
 };
 
-export default RedirectPagesOff;
+export default RedirectAuthPage;

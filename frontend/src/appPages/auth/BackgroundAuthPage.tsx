@@ -4,7 +4,7 @@ type Props = {
   bgName: string;
 };
 
-const BackgroundPagesOff: FC<Props> = ({ bgName }) => {
+const BackgroundAuthPage: FC<Props> = ({ bgName }) => {
   const [src, setSrc] = useState<string>('');
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const BackgroundPagesOff: FC<Props> = ({ bgName }) => {
   );
 };
 
-export default BackgroundPagesOff;
+export default BackgroundAuthPage;

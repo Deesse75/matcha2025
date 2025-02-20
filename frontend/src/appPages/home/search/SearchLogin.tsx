@@ -9,9 +9,7 @@ import {
 import { GiCheckMark } from 'react-icons/gi';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
-import {
-  searchRoute,
-} from '../../../../appUtils/variables/routeDef';
+import { searchRoute } from '../../../appUtils/variables/routeDef';
 
 type Props = {
   setSelectedMenu: Dispatch<SetStateAction<string>>;
@@ -75,7 +73,6 @@ const SearchLogin: FC<Props> = ({ setSelectedMenu }) => {
             Authorization: `Bearer ${sessionStorage.getItem('token')}`,
           },
         });
-
 
         const data = await response.json();
         if (data.status !== 'ok') {

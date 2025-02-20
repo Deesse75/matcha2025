@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import SearchLogin from './utils/SearchLogin';
-import SearchData from './utils/SearchData';
+import { Dispatch, SetStateAction, FC } from "react";
+import SearchData from "./SearchData";
+import SearchLogin from "./SearchLogin";
 
 type Props = {
   setSelectedMenu: Dispatch<SetStateAction<string>>;

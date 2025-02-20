@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import EditTags from './EditTags';
-import { Tags } from '../../../../appInterfaces/search.interfaces';
-import { listRoute } from '../../../../appUtils/variables/routeDef';
+import { Tags } from '../../../appInterfaces/search.interfaces';
+import { listRoute } from '../../../appUtils/variables/routeDef';
 
 type Props = {
   selectedTags: string[] | null;

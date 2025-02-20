@@ -1,12 +1,12 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import Search from './Search';
-import SearchData from './utils/SearchData';
+import { Dispatch, SetStateAction, FC } from 'react';
 import Chat from './Chat';
 import DeleteAccount from './DeleteAccount';
 import Display from './Display';
-import Listing from './Listing';
+import Listing from './listing/Listing';
 import ProfileData from './ProfileData';
+import Search from './search/Search';
 import SignupData from './SignupData';
+import SearchData from './search/SearchData';
 
 type Props = {
   selectedMenu: string;

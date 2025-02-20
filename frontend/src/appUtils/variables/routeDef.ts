@@ -12,7 +12,7 @@ export const appRedirect = {
   resend: '/renvoi_lien_validation',
   validateEmail: '/validation_email',
   contactus: '/contactez_nous',
-  getMe: '/chargement',
+  getMe: '/',
   home: '/tableau_de_bord',
   errorInternal: '/erreur_interne',
 };
@@ -33,7 +33,7 @@ export const authRoute = {
   forgot: `${PATH}/auth/forgot`,
   resend: `${PATH}/auth/resend`,
   reinit: `${PATH}/auth/reinit`,
-  validate: `${PATH}/auth/validate`,
+  validateEmail: `${PATH}/auth/validate_email`,
 };
 
 export const mailRoute = {
@@ -49,4 +49,21 @@ export const searchRoute = {
 export const listRoute = {
   getExistingTagsList: `${PATH}/list/get_existing_tags_list`,
 
+};
+
+export const userRoute = {
+  getMe: `${PATH}/user/getme`,
+
+};
+
+export const socketRoute = {
+  path: `${PATH}`,
+  connected: 'connected', //getMe.tsx
+  connection_failed: 'connection_failed', //getMe.tsx
+  validEmail: 'validEmail',
+  updateToken: 'updateToken',
+  sendView: 'sendView', //{receiverId: number}
+
+  isConnected: 'isUserConnected',
+  receptIsConnected: 'receptIsConnected',
 };

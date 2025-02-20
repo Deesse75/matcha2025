@@ -1,6 +1,6 @@
-import { FC, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { authRoute, appRedirect } from "../../appUtils/variables/routeDef";
+import { FC, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { authRoute, appRedirect } from '../appUtils/variables/routeDef';
 
 type Props = {};
 
@@ -24,19 +24,19 @@ const LoadingMatcha: FC<Props> = ({}) => {
   useEffect(() => {
     const callBackEnd = async () => {
       try {
-        const response = await fetch(authRoute.loading, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        // const response = await fetch(authRoute.loading, {
+        //   method: 'GET',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        // });
 
-        const data = await response.json();
-        if (data.response !== 'ok') {
-          setErrorMessage(data.message || response.statusText);
-          setTimeOutLoading(false);
-          return;
-        }
+        // const data = await response.json();
+        // if (data.response !== 'ok') {
+        //   setErrorMessage(data.message || response.statusText);
+        //   setTimeOutLoading(false);
+        //   return;
+        // }
 
         setTimeOutLoading(false);
         nav(appRedirect.signin);

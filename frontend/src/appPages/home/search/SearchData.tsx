@@ -1,13 +1,11 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
-import {
-  searchRoute,
-} from '../../../../appUtils/variables/routeDef';
+import { searchRoute } from '../../../appUtils/variables/routeDef';
 import SearchRowAge from './SearchRowAge';
 import SearchRowFame from './SearchRowFame';
 import SearchRowLocation from './SearchRowLocation';
 import SearchRowPhoto from './SearchRowPhoto';
-import { Criteres } from '../../../../appInterfaces/search.interfaces';
+import { Criteres } from '../../../appInterfaces/search.interfaces';
 import SearchRowTags from './SearchRowTags';
 
 type Props = {

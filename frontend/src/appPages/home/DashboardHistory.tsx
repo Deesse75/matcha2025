@@ -8,7 +8,7 @@ const DashboardHistory: FC<Props> = ({}) => {
   return (
     <>
       <div className='dashboard_history_container'>
-        <div className='dashboard_history'>
+        {/* <div className='dashboard_history'>
           <div
             className='dashboard_history_match'
             onClick={() => setReloadHistory('match')}
@@ -51,7 +51,7 @@ const DashboardHistory: FC<Props> = ({}) => {
           >
             <HistoryBan reloadHistory={reloadHistory} />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

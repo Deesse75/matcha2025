@@ -6,7 +6,7 @@ import {
   useState,
   useEffect,
 } from 'react';
-import { Criteres } from '../../../../appInterfaces/search.interfaces';
+import { Criteres } from '../../../appInterfaces/search.interfaces';
 
 type Props = {
   criteres: Criteres | null;

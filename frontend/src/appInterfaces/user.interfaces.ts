@@ -24,3 +24,14 @@ export type UserDataType = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type UserHeaderType = {
+  id: number;
+  username: string;
+  region: string | null;
+  county: string | null;
+  town: string | null;
+  fame: number;
+  photo1: string | null;
+  lastConnection: string | null;
+};

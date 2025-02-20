@@ -1,24 +1,26 @@
-import { FC, ReactElement, useState, useEffect } from 'react';
-import BackgroundPagesOff from './off/BackgroundPagesOff';
-import ForgotModule from './off/ForgotModule';
-import RedirectPagesOff from './off/RedirectPagesOff';
-import ResendModule from './off/ResendModule';
-import SigninModule from './off/SigninModule';
-import SignupModule from './off/SignupModule';
-import ContactOff from './off/ContactOff';
-import ValidateModule from './off/ValidateModule';
+import { FC, ReactElement, useState, useEffect } from "react";
+import ContactOff from "./auth/ContactOff";
+import ForgotModule from "./auth/ForgotModule";
+import ResendModule from "./auth/ResendModule";
+import SigninModule from "./auth/SigninModule";
+import SignupModule from "./auth/SignupModule";
+import ValidateEmailModule from "./auth/ValidateEmailModule";
+import ReinitdModule from "./auth/ReinitModule";
+import BackgroundAuthPage from "./auth/BackgroundAuthPage";
+import RedirectAuthPage from "./auth/RedirectAuthPage";
 
 type Props = {
   activePage: string;
 };
 
-const PagesOff: FC<Props> = ({ activePage }) => {
+const AuthPage: FC<Props> = ({ activePage }) => {
   const pagesName: string[] = [
     'signin',
     'signup',
     'resend',
     'forgot',
-    'validate',
+    'validateEmail',
+    'reinit',
     'contact',
   ];
   const pagesRoute: ReactElement[] = [
@@ -26,7 +28,8 @@ const PagesOff: FC<Props> = ({ activePage }) => {
     <SignupModule />,
     <ResendModule />,
     <ForgotModule />,
-    <ValidateModule />,
+    <ValidateEmailModule />,
+    <ReinitdModule />,
     <ContactOff />,
   ];
   const [openPage, setOpenPage] = useState<ReactElement | null>(null);
@@ -45,10 +48,10 @@ const PagesOff: FC<Props> = ({ activePage }) => {
           <>
             <div className='pages_off_container'>
               {openPage}
-              <RedirectPagesOff activePage={activePage} />
+              <RedirectAuthPage activePage={activePage} />
             </div>
             <div className='background_pages_off_container'>
-              <BackgroundPagesOff bgName={activePage} />
+              {/* <BackgroundAuthPage bgName={activePage} /> */}
             </div>
           </>
         ) : (
@@ -63,4 +66,4 @@ const PagesOff: FC<Props> = ({ activePage }) => {
   );
 };
 
-export default PagesOff;
+export default AuthPage;

@@ -2,12 +2,15 @@ import { createRoot } from 'react-dom/client';
 import './appStyles/index.scss';
 import App from './appPages/App.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import NotifProvider from './appUtils/context/notif.context.tsx';
+import ListProvider from './appUtils/context/listing.context.tsx';
+import UserProvider from './appUtils/context/user.context.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <NotifProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </NotifProvider>,
+  <UserProvider>
+    <ListProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ListProvider>
+  </UserProvider>,
 );
