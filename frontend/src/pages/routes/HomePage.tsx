@@ -7,6 +7,7 @@ import SelectionMatcha from "./homePagesComponents/selection/SelectionMatcha";
 import Chat from "./homePagesComponents/chat/Chat";
 import SocketManager from "../../xxxxxxhome/socket/SocketManager";
 import Account from "./homePagesComponents/account/Account";
+import Signout from "./homePagesComponents/account/Signout";
 
 type Props = {
   activePage: string;
